@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    通过配置类注册-->
+    <context:component-scan base-package="org.ioc.ioc_1.service" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+    
+    <!--    通过Java反射实现的-->
+    <bean class="JavaEE.ioc.ioc_1.model.User" id="user">
+        <constructor-arg name="username" value="张三"/>
+        <constructor-arg name="address" value="江苏"/>
+        <constructor-arg name="id" value="1"/>
+    </bean>
+    <bean class="JavaEE.ioc.ioc_1.model.User" id="user2">
+        <property name="username" value="李四"/>
+        <property name="address" value="北京"/>
+        <property name="id" value="2"/>
+    </bean>
+    <bean class="JavaEE.ioc.ioc_1.model.User" id="user3" p:username="小李" p:id="3" p:address="上海"/>
+
+    <bean class="JavaEE.ioc.ioc_1.OkHTTPStaticFactory" factory-method="getInstance" id="okHttpClient"/>
+    <!--    <bean class="org.ioc.ioc_1.OkHTTPFactory" factory-method="getInstancessssss"/> 错误写法，无法获取到方法（视频中，但是实际上可以直接获取到）-->
+    <!--    视频中用了以下方法，反而无法获取-->
+    <!--    <bean class="org.ioc.ioc_1.OkHTTPFactory" id="okHTTPFactory"/>-->
+    <!--    <bean class="okhttp3.OkHttpClient" factory-bean="okHTTPFactory" factory-method=""/>-->
+    <bean class="JavaEE.ioc.ioc_1.OkHTTPFactory" factory-method="getInstancessssss" id="okHttpClient22"/>
+
+    <bean class="JavaEE.ioc.ioc_1.model.User" id="user4">
+        <property name="username" value="王二麻子"/>
+        <property name="address" value="天津"/>
+        <property name="id" value="4"/>
+        <property name="cat" ref="catValue1"/>
+        <property name="cats">
+            <array>
+                <ref bean="catValue2"/>
+                <ref bean="catValue3"/>
+                <bean class="JavaEE.ioc.ioc_1.model.Cat" id="catValue4">
+                    <property name="age" value="8"/>
+                    <property name="name" value="小沙雕"/>
+                </bean>
+            </array>
+        </property>
+        <property name="hobbies">
+            <list>
+                <value>吃饭</value>
+                <value>睡觉</value>
+            </list>
+        </property>
+        <property name="details">
+            <map>
+                <entry key="gender" value="男"/>
+                <entry key="phone" value="10086"/>
+            </map>
+        </property>
+        <property name="infos">
+            <props>
+                <prop key="order1">麻辣香锅</prop>
+                <prop key="order2">鱼香肉丝</prop>
+                <prop key="order3">蚂蚁上树</prop>
+            </props>
+        </property>
+    </bean>
+    <bean class="JavaEE.ioc.ioc_1.model.Cat" id="catValue1">
+        <property name="age" value="5"/>
+        <property name="name" value="小扣丁"/>
+    </bean>
+    <bean class="JavaEE.ioc.ioc_1.model.Cat" id="catValue2">
+        <property name="age" value="6"/>
+        <property name="name" value="小力士"/>
+    </bean>
+    <bean class="JavaEE.ioc.ioc_1.model.Cat" id="catValue3">
+        <property name="age" value="7"/>
+        <property name="name" value="小贝比"/>
+    </bean>
+</beans>
