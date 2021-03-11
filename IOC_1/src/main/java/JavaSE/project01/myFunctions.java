@@ -1,6 +1,13 @@
 package JavaSE.project01;
 
 public class myFunctions {
+    static class foreachFunction{
+        public static void showArry(int ... array){
+            for(int i : array){
+                System.out.println(i);
+            }
+        }
+    }
 
 }
 

@@ -22,7 +22,9 @@ public class Question_765 {
             // p1的情侣
             int p2 = (p1 & 1) == 0 ? p1 + 1 : p1 - 1;
             // p1和p2正好挨着，无需交换这一对
-            if (row[i + 1] == p2) continue;
+            if (row[i + 1] == p2) {
+                continue;
+            }
             // p2的位置
             int p2Index = indexMap[p2];
             // 交换 p2 <=> [i+1]

@@ -21,5 +21,7 @@ public class main {
         main t = new main();
         t.test(new Student("小红", 15, "红星"));
         System.out.println(t.equals(a));
+
+        myFunctions.foreachFunction.showArry(1, 2, 3);
     }
 }
